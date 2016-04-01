@@ -1,90 +1,69 @@
 import java.util.HashMap;
 
-/**
- * Created by Brittany on 3/31/16.
- */
+/** Member class is for holding all of the information that is getting pulled
+ * **/
 public class Member {
-    private static String name;
-    private String selection;
-    static HashMap<String, Double> sums = new HashMap<>();
+    private String name;
 
+    private double withdraw;
+    public static HashMap<String, Double> sums = new HashMap<String, Double>();
+
+
+    public String getChooseName(){
+        return name;
+    }
+
+    public double getWithdraw(){
+        return withdraw;
+    }
 
     public Member() {
 
+        sums.put("TristanC", 78.98);
+        sums.put("TristanS", 4567.32);
+        sums.put("BrittanyC", 934.00);
+        sums.put("BrittanyS", 1987.00);
+        sums.put("BrianC", 7.00);
+        sums.put("BrianS", 900.00);
+        sums.put("RobS", 87.39);
+        sums.put("RobC", 576.76);
+
+
     }
 
-    public Member(String name, String selection, int amount, HashMap sums) {
+    public Member(String name, String selection) {
         this.name = name;
-        this.selection = selection;
 
 
 
-            sums.put("BrittanyC", 934.00);
-            sums.put("BrittanyS", 1987.00);
-            sums.put("BrianC", 7.00);
-            sums.put("BrianS", 900.00);
+
 
     }
 
-
-    // chooseName is designed to accept account name
-    public void chooseName() throws Exception {
+    // chooseName is designed to get a person's name
+    public void chooseName() {
         Bank.print("What is your name?");
         this.name = Bank.scanner.nextLine();
 
         if (name.length() >= 1) {
-            System.out.println("WELCOME!!!!" + name);
+            System.out.println("WELCOME " + name + "!!!!");
         } else {
-            throw new Exception("Please enter your name");
+            while (getChooseName().isEmpty()) {
+
+                Bank.print("Please enter your name");
+                this.name = Bank.scanner.nextLine();
+
+            }
         }
     }
 
-    public void chooseSelection() throws Exception {
-        Bank.print("What would you like to do? [Check Balance/Withdraw Funds/Cancel/Add Account]");
-        this.selection = Bank.scanner.nextLine();
 
-        if (selection.equalsIgnoreCase("Check Balance")) {
-            Bank.print("Your balance is $100");
-        } else if (selection.equalsIgnoreCase("Cancel")) {
-            Bank.print("Thank you, please come again");
-        } else if (selection.equalsIgnoreCase("Withdraw Funds")) {
-            Bank.print("How much money would you like to withdraw?");
-            int withdraw = Bank.scanner.nextInt();
 
-            if (withdraw > 100) {
-                throw new Exception("Invalid amount, exceeds ATM maximum limit. Please enter new amount");
-            } else if (withdraw < 0) {
-                throw new Exception("Invalid amount, less than ATM minimum. Please enter new amount");
-            } else {
-                Bank.print("Thank you, please take your money");
-            }
-        } else if (selection.equalsIgnoreCase("Add Account")) {
-            Bank.print("Please select type of account you would like to enter [Checking/Savings]");
-            String account = Bank.scanner.nextLine();
-
-            if (account.equalsIgnoreCase("Checking")) {
-                Bank.print("Checking added");
-            } else if (account.equalsIgnoreCase("Savings")) {
-                Bank.print("Savings added");
-            }
-
-        }
-
-        if (selection.equalsIgnoreCase("Cancel"));
-
-    }
-
-    // I want this method to accept the members name and see if their account is stored on this ATM
-    // 1. prompt and accept account name
-    // 2. check the hashMap for the account name
-    // 3. if its not in the hashMap then it needs to be added
-    public void acceptName() {
+    //
+    public void acceptAccount() {
         Bank.print("Please enter the name of the account you are trying to access.");
         String account = Bank.scanner.nextLine();
 
-        // need to know what type of value whether empty or stored account sum
-        // if account is not in the hashMap then it needs to be added
-        // if its already there it needs to continue as normal
         if (sums.containsKey(account) ) {
             Bank.print("Great we already have all of your account information! Please follow next steps.");
         }
@@ -93,11 +72,15 @@ public class Member {
             double amount = Bank.scanner.nextDouble();
             sums.put(account, amount);
 
+
+            //sums.put("BrittanyC", 934.00);
+            //sums.put("BrittanyS", 1987.00);
+            //sums.put("BrianC", 7.00);
+            //sums.put("BrianS", 900.00);
+
+
         }
     }
 
-    public String getSelection() {
-        return selection;
-    }
 
 }
