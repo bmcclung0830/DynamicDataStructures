@@ -23,7 +23,7 @@ public class Member {
         sums.put("TristanS", 4567.32);
         sums.put("BrittanyC", 934.00);
         sums.put("BrittanyS", 1987.00);
-        sums.put("BrianC", 7.00);
+        sums.put("BrianC", 7890.00);
         sums.put("BrianS", 900.00);
         sums.put("RobS", 87.39);
         sums.put("RobC", 576.76);
@@ -42,16 +42,16 @@ public class Member {
 
     // chooseName is designed to get a person's name
     public void chooseName() {
-        Bank.print("What is your name?");
-        this.name = Bank.scanner.nextLine();
+        Print.print("What is your name?");
+        this.name = Print.scanner.nextLine();
 
         if (name.length() >= 1) {
             System.out.println("WELCOME " + name + "!!!!");
         } else {
             while (getChooseName().isEmpty()) {
 
-                Bank.print("Please enter your name");
-                this.name = Bank.scanner.nextLine();
+                Print.print("Please enter your name");
+                this.name = Print.scanner.nextLine();
 
             }
         }
@@ -61,23 +61,16 @@ public class Member {
 
     //
     public void acceptAccount() {
-        Bank.print("Please enter the name of the account you are trying to access.");
-        String account = Bank.scanner.nextLine();
+        Print.print("Please enter the name of the account you are trying to access.");
+        String account = Print.scanner.nextLine();
 
         if (sums.containsKey(account) ) {
-            Bank.print("Great we already have all of your account information! Please follow next steps.");
+            Print.print("Great we already have all of your account information! Please follow next steps.");
         }
         else {
-            Bank.print("What is the total amount of currency in this account?");
-            double amount = Bank.scanner.nextDouble();
+            Print.print("What is the total amount of currency in this account?");
+            double amount = Print.scanner.nextDouble();
             sums.put(account, amount);
-
-
-            //sums.put("BrittanyC", 934.00);
-            //sums.put("BrittanyS", 1987.00);
-            //sums.put("BrianC", 7.00);
-            //sums.put("BrianS", 900.00);
-
 
         }
     }

@@ -28,62 +28,63 @@ public class Function {
      */
     public void chooseSelection() {
 
-            Bank.print("What would you like to do? Select 1, 2, 3, 4 or 5. " +
+            Print.print("What would you like to do? Select 1, 2, 3, 4 or 5. " +
                     "[1 Check Balance/2 Withdraw Funds/3 Cancel/4 Add Account/5 Deposit]");
-            this.selection = Bank.scannerFunction.nextLine();
+            this.selection = Print.scannerFunction.nextLine();
 
         if (selection.equalsIgnoreCase("1")) {
-            Bank.print("Please tell me the name of the account you want to check.");
-            String account = Bank.scannerFunction.nextLine();
-            Bank.print("Ok great, let me check your account.");
-            Bank.print( Member.sums.get(account).toString() );
+            Print.print("Please tell me the name of the account you want to check.");
+            String account = Print.scannerFunction.nextLine();
+            Print.print("Ok great, let me check your account.");
+            Print.print( Member.sums.get(account).toString() );
 
         } else if (selection.equalsIgnoreCase("2")) {
-            Bank.print("Please enter the name of the account you want to withdraw from");
-            String account = Bank.scannerFunction.nextLine();
-            Bank.print("How much money would you like to withdraw from " + account);
-            double withdraw = Bank.scanner.nextDouble();
+            Print.print("Please enter the name of the account you want to withdraw from");
+            String account = Print.scannerFunction.nextLine();
+            Print.print("How much money would you like to withdraw from " + account);
+            double withdraw = Print.scanner.nextDouble();
             double amount = ( Member.sums.get(account) );
             double remaining = amount - withdraw;
             Member.sums.replace(account, amount, remaining);
 
             if (withdraw > 100) {
-                Bank.print("Invalid amount, exceeds ATM maximum limit. Please enter new amount");
+                Print.print("Invalid amount, exceeds ATM maximum limit. Please enter new amount");
             } else if (withdraw < 0) {
-                Bank.print("Invalid amount, less than ATM minimum. Please enter new amount");
+                Print.print("Invalid amount, less than ATM minimum. Please enter new amount");
             } else {
-                Bank.print("Thank you, please take your money");
+                Print.print("Thank you, please take your money");
             }
 
         } else if (selection.equalsIgnoreCase("3")) {
-            Bank.print("Thank you, please come again");
+            Print.print("Thank you, please come again");
 
         } else if (selection.equalsIgnoreCase("4")) {
-            Bank.print("Please select one of the following [Checking/Savings]");
-            String accountType = Bank.scannerFunction.nextLine();
+            Print.print("Please select one of the following [Checking/Savings]");
+            String accountType = Print.scannerFunction.nextLine();
 
             if (accountType.equalsIgnoreCase("Checking")) {
-                Bank.print("Please enter the name of the account as follows NameC");
-                String account = Bank.scannerFunction.nextLine();
-                Bank.print("Please enter the amount that will be in this account.");
-                double amount = Bank.scanner.nextDouble();
+                Print.print("Please enter the name of the account as follows NameC");
+                String account = Print.scannerFunction.nextLine();
+                Print.print("Please enter the amount that will be in this account.");
+                double amount = Print.scanner.nextDouble();
                 Member.sums.put(account, amount);
-                Bank.print("Great we added that account for you!");
+                Print.print("Great we added that account for you!");
 
             } else if (accountType.equalsIgnoreCase("Savings")) {
-                Bank.print("Please enter the name of the account as follows NameS");
-                String account = Bank.scannerFunction.nextLine();
-                Bank.print("Please enter the amount that will be putting in the account");
-                double amount = Bank.scanner.nextDouble();
+                Print.print("Please enter the name of the account as follows NameS");
+                String account = Print.scannerFunction.nextLine();
+                Print.print("Please enter the amount that will be putting in the account");
+                double amount = Print.scanner.nextDouble();
                 Member.sums.put(account, amount);
-                Bank.print("Great we added that account for you!!");
+                Print.print("Great we added that account for you!!");
             }
 
         } else if (selection.equalsIgnoreCase("5")) {
-            Bank.print("Please enter the name of the account you would like to make a deposit to");
-            String account = Bank.scannerFunction.nextLine();
-            Bank.print("Please enter amount you want to deposit into " + account);
-            double deposit = Bank.scanner.nextDouble() + Member.sums.get(account);
+            Print.print("Please enter the name of the account you would like to make a deposit to");
+            String account = Print.scannerFunction.nextLine();
+            Print.print("Please enter amount you want to deposit into " + account);
+            double amount = Member.sums.get(account);
+            double deposit = Print.scanner.nextDouble() + amount;
             Member.sums.replace(account, amount, deposit);
         }
     }

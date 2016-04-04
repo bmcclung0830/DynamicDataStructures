@@ -12,21 +12,13 @@ public class Bank {
 
         while (true) {
             //Meant to run each method in the member class
-            Bank.print("Welcome money needing human!");
+            Print.print("Welcome money needing human!");
             member.chooseName();
             member.acceptAccount();
             function.chooseSelection();
-
-            //Need while loop to run to selection choices over and over until Cancel is selected
-
             while (! Function.getSelection().equalsIgnoreCase("3")){
                 function.chooseSelection();
             }
-
         }
-
-    }
-    public static void print(String anyString) {
-        System.out.println(anyString);
     }
 }
